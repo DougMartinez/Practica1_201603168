@@ -9,10 +9,11 @@ import java.util.Scanner;
  * @author Douglas
  */
 public class Practica1_201603168 {
-    
+
     static char [][] tab_minas;
     static char [][] tab_volteo;
     static char ch;
+    static int ganar = 0;
     static int perder = 0;
     static int abrir;
     static int pedirx;
@@ -25,80 +26,33 @@ public class Practica1_201603168 {
     static int minas;
     static int op = 0;
     static boolean poder;
+    static String conv;
+    static String filcol;
     static String line;
+    static String opg;
+    static String conf;
     static Random ran = new Random();
     static Scanner scan = new Scanner(System.in);
-    
+
     public static void main(String[] args) {
         
         System.out.println("Douglas Omar Arreola Martínez\n201603158\nIPC1 'A' Práctica 1\nBUSCAMINAS");
         line = scan.nextLine();
         do {
+            System.out.println("-----------------------------");
             System.out.println("1. Principiante\n2. Intermedio\n3. Avanzado\n4. Salir");
             System.out.println("Ingresa Opción");
             op = scan.nextInt();
-            System.out.println();
+            System.out.println("-----------------------------");
             switch (op){
                 case 1:
-                    tamaño = 4;
-                    minas = 4;
-                    tab_minas = new char [tamaño][tamaño];
-                    tab_volteo = new char [tamaño][tamaño];
-                    for(int i=0; i<tamaño; i++){
-                        for(int j=0; j<tab_minas.length; j++){
-                            tab_minas[i][j] = ' ';
-                        }
-                    }
-                    for(int i=0; i<tamaño; i++){
-                        for(int j=0; j<tab_volteo.length; j++){
-                            tab_volteo[i][j] = 'X';
-                        }
-                    }
-                    putminas();
-                    nums1();
-                    imprTab();
-                    imprTabvolt();
-                    volteo_despeje();
+                    principiante();
                     break;
                 case 2:
-                    tamaño = 6;
-                    minas = 8;
-                    tab_minas = new char [tamaño][tamaño];
-                    tab_volteo = new char [tamaño][tamaño];
-                    for(int i=0; i<tamaño; i++){
-                        for(int j=0; j<tab_minas.length; j++){
-                            tab_minas[i][j] = ' ';
-                        }
-                    }
-                    for(int i=0; i<tamaño; i++){
-                        for(int j=0; j<tab_volteo.length; j++){
-                            tab_volteo[i][j] = 'X';
-                        }
-                    }
-                    putminas();
-                    nums2();
-                    imprTab();
-                    imprTabvolt();
+                    intermedio();
                     break;
                 case 3:
-                    tamaño = 8;
-                    minas = 12;
-                    tab_minas = new char [tamaño][tamaño];
-                    tab_volteo = new char [tamaño][tamaño];
-                    for(int i=0; i<tamaño; i++){
-                        for(int j=0; j<tab_minas.length; j++){
-                            tab_minas[i][j] = ' ';
-                        }
-                    }
-                    for(int i=0; i<tamaño; i++){
-                        for(int j=0; j<tab_volteo.length; j++){
-                            tab_volteo[i][j] = 'X';
-                        }
-                    }
-                    putminas();
-                    nums3();
-                    imprTab();
-                    imprTabvolt();
+                    avanzado();
                     break;
                 case 4:
                     System.out.println("Gracias, nos vemos pronto");
@@ -108,11 +62,7 @@ public class Practica1_201603168 {
             }
         } while (op != 4);
     }
-    
-    static void metodjuego(){
-        
-    }
-    
+
     static boolean putminas(){
         yaalli = 0;
         do{
@@ -126,7 +76,76 @@ public class Practica1_201603168 {
         } while(yaalli < minas);
         return true;
     }
-        
+    
+    static void principiante(){
+        tamaño = 4;
+        minas = 4;
+        tab_minas = new char [tamaño][tamaño];
+        tab_volteo = new char [tamaño][tamaño];
+        for(int i=0; i<tamaño; i++){
+            for(int j=0; j<tab_minas.length; j++){
+                tab_minas[i][j] = ' ';
+            }
+        }
+        for(int i=0; i<tamaño; i++){
+            for(int j=0; j<tab_volteo.length; j++){
+                tab_volteo[i][j] = 'X';
+            }
+        }
+        putminas();
+        nums1();
+        System.out.println("NIVEL PRINCIPIANTE");
+        imprTab();
+        imprTabvolt();
+        volteo_despeje();
+    }
+    
+    static void intermedio(){
+        tamaño = 6;
+        minas = 8;
+        tab_minas = new char [tamaño][tamaño];
+        tab_volteo = new char [tamaño][tamaño];
+        for(int i=0; i<tamaño; i++){
+            for(int j=0; j<tab_minas.length; j++){
+                tab_minas[i][j] = ' ';
+            }
+        }
+        for(int i=0; i<tamaño; i++){
+            for(int j=0; j<tab_volteo.length; j++){
+                tab_volteo[i][j] = 'X';
+            }
+        }
+        putminas();
+        nums2();
+        System.out.println("NIVEL INTERMEDIO");
+        imprTab();
+        imprTabvolt();
+        volteo_despeje();
+    }
+    
+    static void avanzado(){
+        tamaño = 8;
+        minas = 12;
+        tab_minas = new char [tamaño][tamaño];
+        tab_volteo = new char [tamaño][tamaño];
+        for(int i=0; i<tamaño; i++){
+            for(int j=0; j<tab_minas.length; j++){
+                tab_minas[i][j] = ' ';
+            }
+        }
+        for(int i=0; i<tamaño; i++){
+            for(int j=0; j<tab_volteo.length; j++){
+                tab_volteo[i][j] = 'X';
+            }
+        }
+        putminas();
+        nums3();
+        System.out.println("NIVEL AVANZADO");
+        imprTab();
+        imprTabvolt();
+        volteo_despeje();
+    }
+
     static void nums1(){
         /*    
             Linea de arriba
@@ -614,7 +633,7 @@ public class Practica1_201603168 {
             }
         }
     }
-    
+
     static void nums2(){
         /*    
             Linea de arriba
@@ -1406,7 +1425,7 @@ public class Practica1_201603168 {
             }
         }
     }
-    
+
     static void nums3(){
         // Esquina supiz
         cont = 0;
@@ -1746,28 +1765,84 @@ public class Practica1_201603168 {
             }
         }
     }
-    
+
     static void volteo_despeje(){
         do {
-            System.out.println("Pedir fila");
-            pedirx = scan.nextInt();
-            System.out.println("Pedir columna");
-            pediry = scan.nextInt();
-            if(tab_minas[pedirx - 1][pediry - 1] == '*'){
-                System.out.println("Perder");
-                tab_volteo[pedirx - 1][pediry - 1] = '*';
-                imprTab();
-                imprTabvolt();
+            ganar = 0;
+            ganar();
+            if(ganar == minas){
+                System.out.println("Has ganado, muchas felicidades");
                 perder = 1;
             } else {
-                despeje();
-                tab_volteo[pedirx - 1][pediry - 1] = tab_minas[pedirx - 1][pediry - 1];
-                imprTab();
-                imprTabvolt();
-            } 
+                System.out.println("Presiona 'Enter' para continuar");
+                scan.nextLine();
+                System.out.println("-----------------------------");
+                System.out.println("Voltear: V\nReiniciar: R\nSalir: S\n\n");
+                System.out.printf("Ingrese Opción:");
+                opg = scan.next();
+                opg = opg.toLowerCase();
+                switch(opg){
+                    case "r":
+                        switch (op) {
+                            case 1:
+                                principiante();
+                                break;
+                            case 2:
+                                intermedio();
+                                break;
+                            case 3:
+                                avanzado();
+                                break;
+                            default:
+                            break;
+                        }
+                        break;
+                    case "v":
+                        scan.nextLine();
+                        System.out.println("Ingresar fila y columna separada por una coma ',' ");
+                        filcol = scan.nextLine();
+                        conv = "" + filcol.charAt(0);
+                        pedirx = (Integer.parseInt(conv));
+                        conv = "" + filcol.charAt(2);
+                        pediry = (Integer.parseInt(conv));
+                        if(1 <= pedirx && pedirx <= tamaño && 1 <= pediry && pediry <= tamaño){
+                            System.out.println("¿Aceptar datos ingresados?\nSi: Y\nNo: N");
+                            conf = scan.nextLine();
+                            conf = conf.toLowerCase();
+                            switch(conf){
+                                case "y":
+                                    if(tab_minas[pedirx - 1][pediry - 1] == '*'){
+                                        System.out.println("Has perdido, bien jugado");
+                                        System.out.println("Este es tu resultado");
+                                        tab_volteo[pedirx - 1][pediry - 1] = '*';
+                                        imprTab();
+                                        imprTabvolt();
+                                        perder = 1;
+                                    } else {
+                                        despeje();
+                                        tab_volteo[pedirx - 1][pediry - 1] = tab_minas[pedirx - 1][pediry - 1];
+                                        imprTab();
+                                        imprTabvolt();
+                                    }
+                                    break;
+                                case "n":
+                                    
+                                    break;
+                            }
+                        } else {
+                            System.out.println("Fuera de rango");
+                        }
+                        break;
+                    case "s":
+                        perder = 1;
+                        break;
+                    default:
+                        System.out.println("Te has equivocado, prueba de nuevo");
+                }
+            }
         }while(perder != 1);
     }
-    
+
     static void imprTab(){
         System.out.print(" ");
         for(int a = 1; a <= tamaño; a++){
@@ -1788,7 +1863,7 @@ public class Practica1_201603168 {
         }
         System.out.println();
     }
-    
+
     static void imprTabvolt(){
         System.out.print(" ");
         for(int a = 1; a <= tamaño; a++){
@@ -1809,7 +1884,7 @@ public class Practica1_201603168 {
         }
         System.out.println();
     }  
-    
+
     static void despeje(){
         // esquina supiz
         if(pedirx-1 == 0 && pediry-1 == 0){
@@ -1856,8 +1931,8 @@ public class Practica1_201603168 {
             } else {
                 tab_volteo[tamaño - 2][tamaño - 1] = tab_minas[tamaño - 2][tamaño - 1];
             }
-        } else if (pediry-1 == 0){ //linea izquierda
-            for(int y = 1; y < tamaño-2; y++ ){
+        } else if (pediry == 1){ //linea izquierda
+            for(int y = 1; y < tamaño-1; y++ ){
                 if (y == pedirx-1){
                     if(tab_minas[y - 1][0] == '*' ){
 
@@ -1876,6 +1951,97 @@ public class Practica1_201603168 {
                     }
                 }
             }
+        } else if (pediry == tamaño){ //linea derecha
+            for(int y = 1; y < tamaño-1; y++ ){
+                if (y == pedirx-1){
+                    if(tab_minas[y - 1][pediry - 1] == '*' ){
+
+                    } else {
+                        tab_volteo[y - 1][pediry - 1] = tab_minas[y - 1][pediry - 1];
+                    }
+                    if(tab_minas[y][pediry - 2] == '*' ){
+
+                    } else {
+                        tab_volteo[y][pediry - 2] = tab_minas[y][pediry - 2];
+                    }
+                    if(tab_minas[y + 1][pediry - 1] == '*' ){
+
+                    } else {
+                        tab_volteo[y + 1][pediry - 1] = tab_minas[y + 1][pediry - 1];
+                    }
+                }
+            }
+        } else if (pedirx == 1){ //linea arriba
+            for(int y = 1; y < tamaño-1; y++ ){
+                if (y == pediry-1){
+                    if(tab_minas[0][y - 1] == '*' ){
+
+                    } else {
+                        tab_volteo[0][y - 1] = tab_minas[0][y - 1];
+                    }
+                    if(tab_minas[1][y] == '*' ){
+
+                    } else {
+                        tab_volteo[1][y] = tab_minas[1][y];
+                    }
+                    if(tab_minas[0][y + 1] == '*' ){
+
+                    } else {
+                        tab_volteo[0][y + 1] = tab_minas[0][y + 1];
+                    }
+                }
+            }
+        } else if (pedirx == tamaño){ //linea abajo
+            for(int y = 1; y < tamaño-1; y++ ){
+                if (y == pediry-1){
+                    if(tab_minas[tamaño - 1][y - 1] == '*' ){
+
+                    } else {
+                        tab_volteo[tamaño - 1][y - 1] = tab_minas[tamaño - 1][y - 1];
+                    }
+                    if(tab_minas[tamaño - 2][y] == '*' ){
+
+                    } else {
+                        tab_volteo[tamaño - 2][y] = tab_minas[tamaño - 2][y];
+                    }
+                    if(tab_minas[tamaño - 1][y + 1] == '*' ){
+
+                    } else {
+                        tab_volteo[tamaño - 1][y + 1] = tab_minas[tamaño - 1][y + 1];
+                    }
+                }
+            }
+        } else {
+            if(tab_minas[pedirx - 2][pediry - 1] == '*' ){
+                //Arriba
+            } else {
+                tab_volteo[pedirx - 2][pediry - 1] = tab_minas[pedirx - 2][pediry - 1];
+            }
+            if(tab_minas[pedirx - 1][pediry - 2] == '*' ){
+                //Izquierda
+            } else {
+                tab_volteo[pedirx - 1][pediry - 2] = tab_minas[pedirx - 1][pediry - 2];
+            }
+            if(tab_minas[pedirx - 1][pediry] == '*' ){
+                //Derecha
+            } else {
+                tab_volteo[pedirx - 1][pediry] = tab_minas[pedirx - 1][pediry];
+            }
+            if(tab_minas[pedirx][pediry - 1] == '*' ){
+                //Abajo
+            } else {
+                tab_volteo[pedirx][pediry - 1] = tab_minas[pedirx][pediry - 1];
+            }
         }
     }
-}//Linea 1859, fuciona solo en la casilla 1,0 pero solo a veces; y solo en modo principiante
+
+    static void ganar(){
+        for(int f = 0; f < tamaño; f++){
+            for(int h = 0; h < tamaño; h++){
+                if(tab_volteo[f][h] == 'X'){
+                    ganar = ganar + 1;
+                }
+            }
+        }
+    }
+}
