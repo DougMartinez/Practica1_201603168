@@ -1811,18 +1811,22 @@ public class Practica1_201603168 {
                             conf = conf.toLowerCase();
                             switch(conf){
                                 case "y":
-                                    if(tab_minas[pedirx - 1][pediry - 1] == '*'){
-                                        System.out.println("Has perdido, bien jugado");
-                                        System.out.println("Este es tu resultado");
-                                        tab_volteo[pedirx - 1][pediry - 1] = '*';
-                                        imprTab();
-                                        imprTabvolt();
-                                        perder = 1;
+                                    if(tab_volteo[pedirx - 1][pediry - 1] != 'X'){
+                                         System.out.println("Posición ya volteada. Acción inválida");
                                     } else {
-                                        despeje();
-                                        tab_volteo[pedirx - 1][pediry - 1] = tab_minas[pedirx - 1][pediry - 1];
-                                        imprTab();
-                                        imprTabvolt();
+                                        if(tab_minas[pedirx - 1][pediry - 1] == '*'){
+                                            System.out.println("Has perdido, bien jugado");
+                                            System.out.println("Este es tu resultado");
+                                            tab_volteo[pedirx - 1][pediry - 1] = '*';
+                                            imprTab();
+                                            imprTabvolt();
+                                            perder = 1;
+                                        } else {
+                                            despeje();
+                                            tab_volteo[pedirx - 1][pediry - 1] = tab_minas[pedirx - 1][pediry - 1];
+                                            imprTab();
+                                            imprTabvolt();
+                                        }
                                     }
                                     break;
                                 case "n":
